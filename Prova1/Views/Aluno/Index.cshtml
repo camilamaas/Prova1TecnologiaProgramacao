@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Prova1.Models.Aluno>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Alunos</h2>
+
+
+@if (@Model.Any())
+{
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th class="text-center">Aluno</th>
+                <th class="text-center">CPF</th>
+                <th class="text-center">Faixa</th>
+                <th class="text-center">Tipo de Associação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var aluno in Model)
+            {
+                <tr>
+                    <td> @Html.ActionLink(aluno.Nome, "Details", new { aluno.Id })</td>
+                    <td> @aluno.CPF</td>
+                    <td> @aluno.Faixa.Nome</td>
+                    <td> @aluno.TipoDeAssociacao.Nome</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não existem faixas cadastradas.</p>
+}

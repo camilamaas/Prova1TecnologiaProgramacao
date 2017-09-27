@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Prova1.Models.TipoDeAssociacao>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tipos de Associação</h2>
+
+
+@if (@Model.Any())
+{
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th class="text-center" >Nome</th>
+                <th class="text-center">Periodo</th>
+                <th class="text-center">Mensalidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tipoDeAssociacao in Model)
+            {
+                <tr>
+                    <td> @Html.ActionLink(@tipoDeAssociacao.Nome, "Details", new { tipoDeAssociacao.Id })</td>
+                    <td> @tipoDeAssociacao.Periodo (meses) </td>
+                    <td> R$ @tipoDeAssociacao.Mensalidade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não existem tipos de associação cadastrados.</p>
+}

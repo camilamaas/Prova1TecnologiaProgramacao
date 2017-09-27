@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Prova1.Models.Faixa>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Faixas</h2>
+
+
+@if (@Model.Any())
+{
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th class="text-center">Nome</th>
+                <th class="text-center">Grau</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var faixa in Model)
+            {
+                <tr>
+                    <td> @Html.ActionLink(faixa.Nome, "Details", new { faixa.Id })</td>
+                    <td> @faixa.Grau</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não existem faixas cadastradas.</p>
+}
